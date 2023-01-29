@@ -1,4 +1,7 @@
 buildscript {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
     dependencies {
         classpath(libs.com.android.tools.build.gradle)
         classpath(libs.org.jetbrains.kotlin.gradle.plugin)
@@ -17,6 +20,12 @@ task clean(type: Delete) {
 def isNonStable = { String version ->
     def regex = /^[0-9,.v-]+(-r)?$/
     return !(version ==~ regex)
+}
+
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
 }
 
 tasks.named("dependencyUpdates").configure {
